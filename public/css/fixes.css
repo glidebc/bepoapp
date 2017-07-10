@@ -1,0 +1,24 @@
+.pagination {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+.pagination-total {
+	color: #666;
+	font-size: 1.1em;
+}
+
+.dataTables_wrapper table.table {
+	border: 1px solid #ccc;
+	background-color: #FFF;
+}
+
+.content-wrapper, .right-side {
+	background-color: #ecf0f5;
+}
+
+div.btn-toolbar {
+	margin: 0px;
+}
+.rpd-dataform .btn-toolbar {
+	margin: 3px;
+}

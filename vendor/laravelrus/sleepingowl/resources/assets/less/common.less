@@ -1,0 +1,170 @@
+@import (less) "../../../public/default/libs/select2/css/select2.min.css";
+@import (less) "../../../public/default/libs/x-editable/css/bootstrap-editable.css";
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style:  italic;
+  font-weight: 400;
+  src:         local('Open Sans Italic'), local('Open-Sans-Italic'),
+               url('../fonts/OpenSans-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style:  bold;
+  font-weight: 700;
+  src:         local('Open Sans Bold'), local('Open-Sans-Bold'),
+               url('../fonts/OpenSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style:  normal;
+  font-weight: 400;
+  src:         local('Open Sans Regular'), local('Open-Sans-Regular'),
+               url('../fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@import "../../../public/default/libs/bootstrap/less/bootstrap";
+@import "../../../public/default/libs/font-awesome/less/font-awesome";
+@import "AdminLTE";
+
+@fa-font-path: "../libs/font-awesome/fonts";
+@icon-font-path: "../libs/bootstrap/fonts/";
+@input-color: #666;
+
+body  {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.sidebar-menu .treeview-menu > li > a {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+  background: 0 0;
+}
+
+table.dataTable thead .sorting_asc:after {
+  content:     "\f0de";
+  float:       right;
+  font-family: fontawesome;
+}
+
+table.dataTable thead .sorting_desc:after {
+  content:     "\f0dd";
+  float:       right;
+  font-family: fontawesome;
+}
+
+table.dataTable thead .sorting:after {
+  content:     "\f0dc";
+  float:       right;
+  font-family: fontawesome;
+  color:       rgba(50, 50, 50, .5);
+}
+
+.tab-content {
+  padding: 10px 0;
+}
+
+/* Datetime */
+.input-group-addon .fa-calendar, .input-group-addon .fa-clock-o {
+  cursor: pointer;
+}
+
+.form-group.input-date, .form-group.input-time {
+  width: 250px;
+}
+
+/* Image */
+.images-group .imageThumbnail {
+  cursor: move;
+}
+
+.btn-actions {
+  padding: 10px !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  border-radius: 0;
+  background: whitesmoke;
+
+  .btn {
+    text-align: left !important;
+    border: 1px solid #fff;
+  }
+
+  .divider {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
+
+
+/*******************
+    Table
+********************/
+.table-color(@color, @text: #fff) {
+  table {
+    border-top-color: darken(desaturate(@color, 15%), 12%) !important;
+  }
+
+  thead,
+  thead tr,
+  thead th,
+  .table-header {
+    border-color: darken(desaturate(@color, 15%), 12%) !important;
+    color: @text;
+  }
+
+  thead tr,
+  thead th {
+    background: darken(desaturate(@color, 8%), 6%);
+  }
+
+  .table-header {
+    background: @color;
+  }
+}
+
+.panel-footer {
+  .pagination {
+    margin: 0;
+  }
+}
+
+.table-primary {
+  .table-color(@brand-primary);
+}
+
+.table-success {
+  .table-color(@brand-success);
+}
+
+.table-danger {
+  .table-color(@brand-danger);
+}
+
+.table-warning {
+  .table-color(@brand-warning);
+}
+
+.table-info {
+  .table-color(@brand-info);
+}
+
+.dt-bootstrap {
+  .dt-bootstrap-header {
+    padding: 10px 20px 0;
+  }
+
+  .dt-bootstrap-footer {
+    background-color: #f5f5f5;
+    padding: 10px 20px 5px;
+    border-top: 1px solid @gray-lighter;
+  }
+}

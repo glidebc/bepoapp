@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='UTF-8' /><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1'>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+<h1>http realtime monitor</h1>
+<?php foreach(array('web1','ha','stor') as $t):?>
+<a class="btn btn-default" href="<?php echo $t?>.html"><?php echo $t?></a>
+<?php endforeach; ?>
+<?php
+$monitorixs=array(
+    'stor'=>'http://10.110.150.237:7000/monitorix-cgi/monitorix.cgi?mode=localhost&graph=all&when=1day&color=black',
+    'ha'=>'http://10.110.150.201:7000/monitorix-cgi/monitorix.cgi?mode=localhost&graph=all&when=1day&color=black',
+    'ap'=>'http://10.110.150.198:7000/monitorix-cgi/monitorix.cgi?mode=localhost&graph=all&when=1day&color=black',
+    'db4'=>'http://10.110.150.214:7000/monitorix-cgi/monitorix.cgi?mode=localhost&graph=all&when=1day&color=black',
+    'web1'=>'http://10.110.150.195:7000/monitorix-cgi/monitorix.cgi?mode=localhost&graph=all&when=1day&color=black',
+    'web5'=>'http://10.110.150.252:7000/monitorix-cgi/monitorix.cgi?mode=localhost&graph=all&when=1day&color=black'
+);
+?>
+<h1>Host monitor</h1>
+<?php foreach($monitorixs as $t=>$href):?>
+<a class="btn btn-default" href="<?php echo $href?>"><?php echo $t?></a>
+<?php endforeach; ?>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+#adover {
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+}
+
+#adover #adover-inner {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  -webkit-transform: translate(-50%, -50%);/* Safari */
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  /* Safari 5+ ONLY */
+    ::i-block-chrome, #adover #adover-inner {top: 50%;}
+}
+
+#adover #adover-inner .ad-banner {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#adover #adover-inner .ad-word {
+  background-color: white;
+}
+
+#adover #adover-inner #ad-close-btn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 26pt;
+  color: white;
+  opacity: .7;
+  width: 60px;
+  height: 60px;
+  padding-top: 12px;
+  text-align: center;
+  line-height: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#adover #adover-inner #ad-close-btn:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=adblock.css.map */

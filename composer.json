@@ -1,0 +1,70 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.2.*",
+        "acacha/admin-lte-template-laravel": "2.*",
+        "spatie/laravel-tail": "^1.1",
+        "zofe/rapyd": "2.2.*",
+        "doctrine/dbal": "^2.5",
+        "barryvdh/laravel-debugbar": "^2.2",
+        "davibennun/laravel-push-notification": "dev-laravel5",
+        "rap2hpoutre/laravel-log-viewer": "^0.6.1",
+        "rtconner/laravel-tagging": "~2.1",
+        "cviebrock/eloquent-taggable": "^2.0",
+        "predis/predis": "^1.1",
+        "jenssegers/mongodb": "^3.1",
+        "maatwebsite/excel": "^2.1",
+        "webpatser/laravel-uuid": "2.*"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~4.0",
+        "symfony/css-selector": "2.8.*|3.0.*",
+        "symfony/dom-crawler": "2.8.*|3.0.*",
+        "zizaco/entrust": "5.2.x-dev"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/Helper/DateHelper.php",
+            "app/Helper/BluemixHelper.php"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ],
+        "files": [
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ],
+        "post-install-cmd": [
+            "php artisan clear-compiled",
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "php artisan clear-compiled",
+            "php artisan optimize"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

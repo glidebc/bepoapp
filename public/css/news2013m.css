@@ -1,0 +1,282 @@
+﻿@charset "utf-8";
+
+body {
+	margin-left: auto;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	font-family: 16px/100% "Helvetica", Verdana, Arial, sans-serif;
+	font-size: 18px;
+	color: #000;
+}
+
+.line a img, .social a img, .btn-box a img {
+	border: 0px;
+}
+
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#header .orangeline {
+	width: 100%;
+	height: 6px;
+	background-color: #ffb800;
+}
+
+#header .logo {
+	width: 113px;
+	height: 59px;
+	padding: 20px 0;
+	margin: auto;
+}
+
+.main_nav {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	margin-bottom: 15px;
+	text-align: center;
+	background: #1d2088;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.yellow_text {
+	color: #ffec00;
+	font-weight: bolder;
+}
+
+#header .main_nav li {
+	display: inline;
+	color: #FFF;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+#header .main_nav li a:hover {
+	color: #ffec00;
+}
+
+#wrap {
+	width: 100%;
+	margin: 2px auto;
+	overflow-x: hidden;
+}
+
+#container {
+	padding: 8px;
+	/*border: 1px #ebefef solid;*/
+}
+
+.channel {
+	clear: both;
+	line-height: 1.8;
+	font-size: 15px;
+	margin-bottom: 10px;
+	/*border-bottom: 1px solid #1d2088;*/
+	color: #1d2088;
+}
+
+#container h2 {
+	font-size: 21px;
+	margin-bottom: 15px;
+	position: relative;
+	padding-right: 35px;
+	color: #cc0a13;
+}
+
+.magnify {
+	height: auto;
+	color: #a1a1a1;
+	font-weight: bolder;
+	text-align: right;
+	float: right;
+}
+
+.m-btn {
+	float: right;
+	width: 30px;
+	height: 30px;
+	/*border: #CCCCCC 1px solid;*/
+	padding-right: 11px;
+	cursor: pointer;
+	margin-right: 2px;
+}
+
+.date {
+	color: #a1a1a1;
+	font-size: 14px;
+	-webkit-margin-after: 0em;
+	/*height: 52px;*/
+}
+
+.story {
+	clear: both;
+	line-height: 1.8;
+}
+
+.story p img , .story img{
+	max-width: 96%; /**/
+	height: auto;
+	margin: 0 auto;
+	/* Fills image into the parent element so the img is fully shown. Can create letterboxes. */
+	object-fit: contain;
+}
+
+.social {
+	height: auto;
+	font-weight: bolder;
+	text-align: center;
+	padding: 10px 0px;
+}
+
+.line {
+	text-align: center;
+}
+
+#videoNote {
+	text-align: center;
+	color: red;
+	font-size: 14px;
+}
+
+#btnVideoChange {
+	cursor: pointer;
+	width: 160px;
+	/*padding-bottom: 10px;*/
+	float: right;
+}
+
+/*#android-video {
+ position: relative;
+ padding-bottom: 56.25%;
+ padding-top: 25px;
+ height: 0;
+ }*/
+
+/*#youtube-play {
+ position: absolute;
+ left: 12px;
+ top: 166px;
+ }*/
+
+/*.yt_img_box {
+ position: relative;
+ width: 100%;
+ height: 0;
+ display: none;
+ }
+ .yt_img_box .img_box {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 80%;
+ height: auto;
+ }
+ #youtube-play{
+ display:none;
+ }
+ #youtube-play1{
+ position:absolute;
+ top:50px;
+ bottom:410px;
+ margin:auto;
+ display:none;
+ }*/
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 50px;
+	height: 0;
+	margin-bottom:30px;
+}
+
+ins iframe{
+	display:block;
+}
+iframe{
+	display:none;
+}
+
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display:block;
+}
+
+.story p img {
+	max-width: 100%;
+	width: auto\9;
+	height: auto;
+	margin: 0;
+}
+
+.story p img {
+	border: 0;
+	display: block;
+}
+.story p, .story {
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.story h1 {
+	font-size: 28px;
+	line-height: 32px;
+	font-weight: bold;
+}
+
+.story h2 {
+	font-size: 26px;
+	line-height: 32px;
+	font-weight: bold;
+}
+
+.story h3 {
+	font-size: 24px;
+	line-height: 28px;
+	font-weight: bold;
+}
+
+.story h4 {
+	font-size: 22px;
+	line-height: 28px;
+}
+
+.story h5 {
+	font-size: 20px;
+	line-height: 26px;
+}
+
+.story h6 {
+	font-size: 18px;
+	line-height: 26px;
+}
+
+.story .date {
+	font-size: 14px;
+	font-style: normal;
+}
+.post .td-category a {
+	font-size: 14px;
+}
+
+em {
+	display: none;
+}

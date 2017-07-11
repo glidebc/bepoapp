@@ -1,6 +1,6 @@
 <?php
 
-if(true){
+if(false){
 	$h='10.110.150.213';
 	$u='pmauser';
 	$p='bepo66007766';
@@ -11,11 +11,12 @@ if(true){
 	}
 }
 
-if(false){
+if(true){
 	$m = new Memcached;
 	$m->addServer('10.110.150.222', 11211);
 	$m->set('test.0','hello');
 	echo $m->get('test.0');
+	echo "END\n";
 }
 
 

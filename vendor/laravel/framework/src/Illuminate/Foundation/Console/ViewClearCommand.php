@@ -48,6 +48,10 @@ class ViewClearCommand extends Command
      */
     public function fire()
     {
+		$path=trim($this->laravel['config']['view.compiled']);
+		if(empty($path))return;
+		if($path=='/')return;
+
         $views = $this->files->glob($this->laravel['config']['view.compiled'].'/*');
 
         foreach ($views as $view) {

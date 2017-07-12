@@ -56,6 +56,8 @@ clean:
 	php artisan debugbar:clear
 	php artisan route:clear
 	php artisan view:clear
+	php artisan route:cache
+	php artisan config:cache
 	-$(COMPOSER) dump-autoload
 	rm -rf storage/logs/*.log
 	chown -R nginx .

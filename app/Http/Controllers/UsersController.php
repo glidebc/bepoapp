@@ -25,14 +25,12 @@ class UsersController extends Controller {
 
 	public function getIndex() {
 
-		$filter=DataFilter::source(User::leftJoin('role_user','users.id','=','role_user.user_id')->join('roles','roles.id','=','role_user.role_id')->select(DB::raw('users.*,roles.id as role_id,roles.display_name as role_display_name')));
-		$filter->add('name','使用者','text')->scope(function($query,$value) {
-			if(is_null($value)) {
-				return $query;
+		$filter=DataFilter::source(User::join('role_user','users.id','=','role_user.user_id')->join('roles','roles.id','=','role_user.role_id')->select(DB::raw('users.*,roles.id as role_id,roles.display_name as role_display_name')));
+		$filter->add('name','名稱','text')->scope(function($query,$value) {
+			if(!is_null($value)) {
+				$query=$query->where('users.name','like','%'.$value.'%');
 			}
-			else {
-				return $query->where('users.name','like','%'.$value.'%');
-			}
+			return $query;
 		});
 
 		$filter->add('email','電子信箱','text');
@@ -44,7 +42,7 @@ class UsersController extends Controller {
 		$filter->build();
 		$grid=DataGrid::source($filter);
 		$grid->attributes(array("class"=>"table table-striped"));
-		$grid->add('name','使用者',true)->style('width:20%');
+		$grid->add('name','名稱',true)->style('width:20%');
 		$grid->add('email','電子信箱',true);
 		$grid->add('role_display_name','角色',true);
 		$grid->add('created_at','建立時間',true)->style('width:12%');

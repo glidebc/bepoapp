@@ -333,7 +333,7 @@ abstract class Field extends Widget
 
                     // some kind of field on belongsToMany works with multiple values, most of time in serialized way
                     //in this case I need to fill value using a serialized array of related collection
-                    if (in_array($this->type, array('tags','checks','multiselect'))) {
+                    if (in_array($this->type, array('select','tags','checks','multiselect'))) {
                         $relatedCollection = $this->relation->get(); //Collection of attached models
                         $relatedIds = $relatedCollection->modelKeys(); //array of attached models ids
                         $this->value = implode($this->serialization_sep, $relatedIds);

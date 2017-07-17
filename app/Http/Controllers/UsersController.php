@@ -59,9 +59,17 @@ class UsersController extends Controller {
 	public function anyEdit() {
 		$edit=DataEdit::source(new User());
 		$edit->link("users","回列表","TR")->back();
+
+		if($edit->status=='modify') {
+			$edit->add('email','電子信箱','text')->mode('readonly');
+			$edit->add('password1','密碼','text')->rule('sometimes|min:8');
+		}
+		else {
+			$edit->add('email','電子信箱','text')->rule('required|email|unique:users,email,'.$edit->model->id)->updateValue($edit->model->email);
+			$edit->add('password1','密碼','text')->rule('required|min:8');
+		}
+
 		$edit->add('name','名稱','text')->rule('required|unique:users,name,'.$edit->model->id);
-		$edit->add('password','密碼','password')->rule('required|min:8');
-		$edit->add('email','電子信箱','text')->rule('required|email|unique:users,email,'.$edit->model->id)->updateValue($edit->model->email);
 		$edit->add('roles.id','角色','select')->options($this->roles)->rule('required');
 		$edit->add('created_at','建立時間','text')->mode('readonly');
 		$edit->add('updated_at','更新時間','text')->mode('readonly');

@@ -17,14 +17,14 @@ class VersionHelper {
 		return '';
 	}
 
-	static function set($data) {
+	static function set($version,$date,$hash) {
 		$path=base_path().'/version.json';
 		$obj=json_decode(file_get_contents($path));
 		if(!$obj) {
 			Log::error("invalid file ".$path);
 		}
 		else {
-			array_unshift($obj->numbers,$data);
+			$obj->numbers=array(array($version,$date,$hash));
 			$json=json_encode($obj);
 			file_put_contents($path,$json);
 		}

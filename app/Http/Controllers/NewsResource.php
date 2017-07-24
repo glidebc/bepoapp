@@ -36,9 +36,9 @@ class NewsResource extends Controller {
 		if(count($category)>0) {
 			$ids=$category->category_ids;
 			$query=Posts::latest()->groupBy('id')->whereRaw("id in ( select post_id from post_category where category_id in ($ids)  )")->select('*')->orderBy('post_at','desc');
-			if($limit>0){
+			if($limit>0) {
 				$query->take($limit);
-            }
+			}
 			if(Input::get('debug')) {
 				$queries=DB::getQueryLog();
 				dd($query);
@@ -124,11 +124,11 @@ class NewsResource extends Controller {
 					$adDetail->ad_id=$id;
 					$adDetail->click=1;
 					$adDetail->show=0;
+					$adDetail->save();
 				}
 				else {
 					$adDetail->increment('click');
 				}
-				$adDetail->save();
 				//$logFile='ad.log';
 				//Log::useDailyFiles(storage_path().'/logs/ad/'.$logFile);
 				//Log::info(json_encode($_SERVER,JSON_UNESCAPED_UNICODE));
@@ -192,8 +192,8 @@ class NewsResource extends Controller {
 		}
 		else {
 			$logFile='ad.log';
-			Log::useDailyFiles(storage_path().'/logs/ad/'.$logFile);
-			Log::info(\App\Helper\NetHelper::getIP().' '.$from,$request->all());
+			//Log::useDailyFiles(storage_path().'/logs/ad/'.$logFile);
+			//Log::info(\App\Helper\NetHelper::getIP().' '.$from,$request->all());
 		}
 		$data=array();
 		if(strlen($platform_type)) {
@@ -224,7 +224,8 @@ class NewsResource extends Controller {
 		return Response::json(array(
 			'result'=>count($data)>0,
 			'data'=>$data?$data:array()
-		),200,['Content-type'=>'application/json; charset=utf-8'],JSON_UNESCAPED_UNICODE)->setCallback($request->get('callback')); ;
+		),200,['Content-type'=>'application/json; charset=utf-8'],JSON_UNESCAPED_UNICODE)->setCallback($request->get('callback'));
+		;
 	}
 
 	public function index() {
@@ -323,7 +324,7 @@ class NewsResource extends Controller {
 		$datalist='https://www.youtube.com/watch?v=oTpt0GVKkPA';
 		// $youtube_id='oTpt0GVKkPA';
 		$youtube_id='Od-5LRHr-DQ';
-       return Response::j(count($datalist)>0,$datalist,array('youtube_id'=>$youtube_id));
+		return Response::j(count($datalist)>0,$datalist,array('youtube_id'=>$youtube_id));
 	}
 
 	public function channelEvent() {

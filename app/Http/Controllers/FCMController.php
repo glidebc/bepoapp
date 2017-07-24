@@ -15,10 +15,10 @@ use App\Model\FCMDeviceModel;
 class FCMController extends Controller {
 	public function update(Request $request) {
 		/*
-		$logFile='fcm.log';
-		Log::useDailyFiles(storage_path().'/logs/'.$logFile);
-		Log::info(json_encode($request->all(),JSON_UNESCAPED_UNICODE));
-		*/
+		 $logFile='fcm.log';
+		 Log::useDailyFiles(storage_path().'/logs/'.$logFile);
+		 Log::info(json_encode($request->all(),JSON_UNESCAPED_UNICODE));
+		 */
 		$resp=array(
 			'code'=>0,
 			'type'=>0,
@@ -35,8 +35,9 @@ class FCMController extends Controller {
 				$type=1;
 
 			$model=FCMDeviceModel::where('device_id','=',$request->input('id'))->where('type','=',$type)->first();
-			if(is_null($model)||0==count($model))
+			if(is_null($model)||0==count($model)) {
 				$model=new FCMDeviceModel();
+			}
 			$model->device_id=$request->input('id');
 			$model->token=$request->input('token');
 			$model->extra=$request->input('appversion');

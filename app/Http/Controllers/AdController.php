@@ -44,7 +44,6 @@ class AdController extends Controller {
 
 		if($data) {
 			$data->increment('show');
-			$data->save();
 			$adDetail=AdDetail::where('ad_id','=',$data->id)->where('date','=',date('Y-m-d'))->first();
 			if(!$adDetail) {
 				$adDetail=new AdDetail();
@@ -52,11 +51,12 @@ class AdController extends Controller {
 				$adDetail->ad_id=$data->id;
 				$adDetail->show=1;
 				$adDetail->click=0;
+				$adDetail->save();
 			}
 			else {
 				$adDetail->increment('show');
 			}
-			$adDetail->save();
+
 		}
 		$data->from=$from;
 		if($request->input('type','html')=='json') {
@@ -113,7 +113,7 @@ class AdController extends Controller {
 		$grid->attributes(array("class"=>"table table-striped"));
 		$grid->add('title','委刊名稱',true)->cell(function($value,$row) {
 			$from=-1;
-           $types=explode(',',$row['platform_type']);
+			$types=explode(',',$row['platform_type']);
 			$ptype=$types[0];
 			switch($ptype) {
 				case '0':

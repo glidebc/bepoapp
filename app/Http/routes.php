@@ -12,10 +12,10 @@
  */
 Route::get('/','HomeController@index');
 /*
-Route::get('/',function() {
-	return Redirect::to('login');
-});
-*/
+ Route::get('/',function() {
+ return Redirect::to('login');
+ });
+ */
 /*
  |--------------------------------------------------------------------------
  | Application Routes
@@ -26,7 +26,10 @@ Route::get('/',function() {
  | kernel and includes session state, CSRF protection, and more.
  |
  */
-Route::get('adshow/{id?}','AdController@show')->where(array('id'=>'[0-9]+'));
+//Route::group(array('prefix'=> 'bepoapp'),function() { 
+    Route::get('adshow/{id?}','AdController@show')->where(array('id'=>'[0-9]+'));
+//});
+
 Route::group(['middleware'=>[
 'web',
 'auth',
@@ -69,19 +72,19 @@ Route::group(['middleware'=>[
 	Route::controller('showbar_videoclass','Showbar\VideoClassController');
 	Route::controller('cti_program','CTI\ProgramController');
 	Route::controller('cti_program_034','CTI\ProgramCalendarController');
-    Route::controller('cti_program_036','CTI\ProgramCalendarController');
-    Route::controller('cti_program_041','CTI\ProgramCalendarController');
-    Route::controller('cti_program_A1','CTI\ProgramCalendarController');
-    Route::controller('cti_program_A2','CTI\ProgramCalendarController');
-    Route::controller('cti_program_A3','CTI\ProgramCalendarController');
-    /*
-    034 中天娛樂台
-    036 中天綜合台
-    041 中天新聞台
-    A1 北美台
-    A2 亞洲台
-    A3 亞洲資訊台
-    */
+	Route::controller('cti_program_036','CTI\ProgramCalendarController');
+	Route::controller('cti_program_041','CTI\ProgramCalendarController');
+	Route::controller('cti_program_A1','CTI\ProgramCalendarController');
+	Route::controller('cti_program_A2','CTI\ProgramCalendarController');
+	Route::controller('cti_program_A3','CTI\ProgramCalendarController');
+	/*
+	 034 中天娛樂台
+	 036 中天綜合台
+	 041 中天新聞台
+	 A1 北美台
+	 A2 亞洲台
+	 A3 亞洲資訊台
+	 */
 	Route::get('logs','\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 	//new bepo website(for video style)
 	Route::controller('newbepotv_videos','NewBepoTV\VideosController');
@@ -89,43 +92,48 @@ Route::group(['middleware'=>[
 	Route::controller('newbepotv_zone','NewBepoTV\ZoneController');
 	Route::controller('newbepotv_program','NewBepoTV\ProgramController');
 	Route::controller('newbepotv_tag','NewBepoTV\TagController');
-    Route::controller('newbepotv_category','NewBepoTV\CategoryController');
-    Route::controller('newbepotv_promote','NewBepoTV\PromoteController');
-    Route::controller('app_setting_1','AppSettingController');
+	Route::controller('newbepotv_category','NewBepoTV\CategoryController');
+	Route::controller('newbepotv_promote','NewBepoTV\PromoteController');
+	Route::controller('app_setting_1','AppSettingController');
+	//sticker
+	Route::controller('sticker_vendor','Sticker\VendorController');
+	Route::controller('sticker_vendor_item','Sticker\VendorItemController');
 });
 
-Route::resource('services/news','NewsResource');
-Route::resource('services/news_test','NewsResource@news_test');
+//Route::group(array('prefix'=> 'bepoapp'),function() {
+	Route::resource('services/news','NewsResource');
+	Route::resource('services/news_test','NewsResource@news_test');
 
-Route::any('cti/services/program_calendar','CTI\ProgramCalendarController@info');
-Route::get('services/ad/{id?}','NewsResource@ad');
-Route::get('services/ad_update','NewsResource@ad_update');
-Route::get('services/notification','NewsResource@notification');
-Route::get('services/360','NewsResource@channel360');
-Route::get('services/cti_videos','NewsResource@channelCtiVideos');
-Route::get('services/event','NewsResource@channelEvent');
-Route::get('services/star','NewsResource@channelStar');
-Route::get('services/live','NewsResource@channelLive');
-Route::get('services/24hours','NewsResource@channel24hours');
-Route::get('services/hotest','NewsResource@channelHotest');
-Route::get('services/AppCheckVer','NewsResource@AppCheckVer');
-Route::get('services/embed/{kind}/{limit?}','NewsResource@embed');
-Route::get('search/posts','SearchController@posts');
-Route::get('search/tags','SearchController@tags');
-Route::get('services/fcm/update','FCMController@update');
-Route::get('services/program','CTI\ProgramCalendarController@anyInfo');
-//bepo embeding
-Route::get('appdownload','AppDownload@index');
+	Route::any('cti/services/program_calendar','CTI\ProgramCalendarController@info');
+	Route::get('services/ad/{id?}','NewsResource@ad');
+	Route::get('services/ad_update','NewsResource@ad_update');
+	Route::get('services/notification','NewsResource@notification');
+	Route::get('services/360','NewsResource@channel360');
+	Route::get('services/cti_videos','NewsResource@channelCtiVideos');
+	Route::get('services/event','NewsResource@channelEvent');
+	Route::get('services/star','NewsResource@channelStar');
+	Route::get('services/live','NewsResource@channelLive');
+	Route::get('services/24hours','NewsResource@channel24hours');
+	Route::get('services/hotest','NewsResource@channelHotest');
+	Route::get('services/AppCheckVer','NewsResource@AppCheckVer');
+	Route::get('services/embed/{kind}/{limit?}','NewsResource@embed');
+	Route::get('search/posts','SearchController@posts');
+	Route::get('search/tags','SearchController@tags');
+	Route::get('services/fcm/update','FCMController@update');
+	Route::get('services/program','CTI\ProgramCalendarController@anyInfo');
+	//bepo embeding
+	Route::get('appdownload','AppDownload@index');
 
-Route::resource('services/categories','CategoriesResource');
-Route::resource('services/api','ApiResource');
-Route::get('articles/{date}/{id}/{slug?}','ArticlesController@show')->where(array(
-	'date'=>'[0-9]+',
-	'id'=>'[0-9]+'
-));
+	Route::resource('services/categories','CategoriesResource');
+	Route::resource('services/api','ApiResource');
+	Route::get('articles/{date}/{id}/{slug?}','ArticlesController@show')->where(array(
+		'date'=>'[0-9]+',
+		'id'=>'[0-9]+'
+	));
 
-Route::controller('test','TestController');
-Route::controller('statistic','StatisticController');
+	Route::controller('test','TestController');
+	Route::controller('statistic','StatisticController');
+//});
 
 Route::group(array('middleware'=>[
 	'web',

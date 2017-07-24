@@ -101,22 +101,22 @@ Route::group(['middleware'=>[
 });
 
 //Route::group(array('prefix'=> 'bepoapp'),function() {
-	Route::resource('services/news','NewsResource');
-	Route::resource('services/news_test','NewsResource@news_test');
+	Route::resource('services/news','BepoAPIController');
+	Route::resource('services/news_test','BepoAPIController@news_test');
 
 	Route::any('cti/services/program_calendar','CTI\ProgramCalendarController@info');
-	Route::get('services/ad/{id?}','NewsResource@ad');
-	Route::get('services/ad_update','NewsResource@ad_update');
-	Route::get('services/notification','NewsResource@notification');
-	Route::get('services/360','NewsResource@channel360');
-	Route::get('services/cti_videos','NewsResource@channelCtiVideos');
-	Route::get('services/event','NewsResource@channelEvent');
-	Route::get('services/star','NewsResource@channelStar');
-	Route::get('services/live','NewsResource@channelLive');
-	Route::get('services/24hours','NewsResource@channel24hours');
-	Route::get('services/hotest','NewsResource@channelHotest');
-	Route::get('services/AppCheckVer','NewsResource@AppCheckVer');
-	Route::get('services/embed/{kind}/{limit?}','NewsResource@embed');
+	Route::get('services/ad/{id?}','BepoAPIController@ad');
+	Route::get('services/ad_update','BepoAPIController@ad_update');
+	Route::get('services/notification','BepoAPIController@notification');
+	Route::get('services/360','BepoAPIController@channel360');
+	Route::get('services/cti_videos','BepoAPIController@channelCtiVideos');
+	Route::get('services/event','BepoAPIController@channelEvent');
+	Route::get('services/star','BepoAPIController@channelStar');
+	Route::get('services/live','BepoAPIController@channelLive');
+	Route::get('services/24hours','BepoAPIController@channel24hours');
+	Route::get('services/hotest','BepoAPIController@channelHotest');
+	Route::get('services/AppCheckVer','BepoAPIController@AppCheckVer');
+	Route::get('services/embed/{kind}/{limit?}','BepoAPIController@embed');
 	Route::get('search/posts','SearchController@posts');
 	Route::get('search/tags','SearchController@tags');
 	Route::get('services/fcm/update','FCMController@update');

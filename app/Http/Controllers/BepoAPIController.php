@@ -25,7 +25,7 @@ use Cache;
 use App\DD360;
 use Log;
 
-class NewsResource extends Controller {
+class BepoAPIController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *

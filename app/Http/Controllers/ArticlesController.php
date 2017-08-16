@@ -11,12 +11,24 @@ use Input;
 use DateHelper;
 use DB;
 use Log;
+use Thunder\Shortcode\ShortcodeFacade;
+use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 class ArticlesController extends Controller {
 	public function show($date,$id,$slug='') {
 		$path='bepoapp.article.'.$id;
 		$type=Input::get('type');
 		$pModel=Posts::where('id','=',$id)->where(DB::raw('date(post_at)'),'=',$date)->select('*')->firstOrFail();
+		//Shortcode
+		$facade = new ShortcodeFacade();
+		$facade->addHandler('caption', function(ShortcodeInterface $s) {
+			$id=$s->getParameter('id');
+			$width=$s->getParameter('width');
+			$aligin=$s->getParameter('aligin');
+			$content=$s->getContent(); 
+			return '<div class="caption">'.$content.'</div>';
+		});
+		$pModel->content=$facade->process($pModel->content);
 		if($type=='json') {
 			$d=$pModel->toArray();
 			$d['content']=$pModel->content;

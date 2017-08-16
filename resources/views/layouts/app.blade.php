@@ -51,10 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			@include('layouts.partials.footer')
 
 		</div><!-- ./wrapper -->
-
-		@section('scripts')
-		@include('layouts.partials.scripts')
-		@show
-
+        @include('layouts.partials.scripts')
+        @yield('scripts')
 	</body>
 </html>

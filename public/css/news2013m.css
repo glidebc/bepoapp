@@ -5,7 +5,7 @@ body {
 	margin-top: 0px;
 	margin-right: auto;
 	margin-bottom: 0px;
-	font-family: 16px/100% "Helvetica", Verdana, Arial, sans-serif;
+	font-family: 文泉驛正黑, "WenQuanYi Zen Hei", "儷黑 Pro", "LiHei Pro", 微軟正黑體, "Microsoft JhengHei", Arial, sans-serif;
 	font-size: 18px;
 	color: #000;
 }
@@ -114,13 +114,6 @@ a:hover {
 	padding-right: 11px;
 	cursor: pointer;
 	margin-right: 2px;
-}
-
-.date {
-	color: #a1a1a1;
-	font-size: 14px;
-	-webkit-margin-after: 0em;
-	/*height: 52px;*/
 }
 
 .story {
@@ -271,7 +264,10 @@ iframe{
 
 .story .date {
 	font-size: 14px;
-	font-style: normal;
+	font-style: italic;
+	color: #333;
+	font-size: 14px;
+	-webkit-margin-after: 0em;
 }
 .post .td-category a {
 	font-size: 14px;
@@ -279,4 +275,17 @@ iframe{
 
 em {
 	display: none;
+}
+caption{
+
+
+}
+.caption strong{
+	display:block;
+	font-style: italic;
+	text-align: right;
+	color: #444;
+	font-weight: 400;
+	margin-right: 15px;
+	line-height: 10px;
 }

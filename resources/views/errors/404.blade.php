@@ -17,19 +17,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="error-template">
-                <h1>
-                    Oops!</h1>
-                <h2>
-                    404 Not Found</h2>
                 <div class="error-details">
-                    Sorry, an error has occured, Requested page not found!
+					無法找到頁面
                 </div>
                 <div class="error-actions">
-                    <a href="/bepoapp" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                        Back to BEPO ADMIN </a>
-                        <!--
-                        <a href="http://www.jquery2dotnet.com" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
-                        -->
+                    <a href="{{env('APP_URL')}}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>回首頁 </a>
                 </div>
             </div>
         </div>

@@ -14,12 +14,14 @@ class Kernel extends ConsoleKernel
         Commands\DBSyncConsole::class,
         Commands\FCMNotificationConsole::class,
 	    Commands\Version::class,
-	    Commands\CChanel::class
+	    Commands\CChanel::class,
+	    \Spatie\LinkChecker\CheckLinksCommand::class,
     );
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('bepo:fcmnotify')->everyMinute()->withoutOverlapping();
+    $schedule->command('bepo:fcmnotify')->everyMinute()->withoutOverlapping();
         $schedule->command('cchanel')->everyMinute()->withoutOverlapping();
+        $schedule->command('link-checker:run')->everyMinute()->withoutOverlapping();
     }
 }

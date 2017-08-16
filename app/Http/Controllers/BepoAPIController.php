@@ -321,9 +321,8 @@ class BepoAPIController extends Controller {
 	}
 
 	public function channel24hours() {
-		$datalist='https://www.youtube.com/watch?v=oTpt0GVKkPA';
-		// $youtube_id='oTpt0GVKkPA';
-		$youtube_id='Od-5LRHr-DQ';
+		$youtube_id=config('bepoapp.yt_24live_id');
+		$datalist='https://www.youtube.com/watch?v='.$youtube_id;
 		return Response::j(count($datalist)>0,$datalist,array('youtube_id'=>$youtube_id));
 	}
 

@@ -104,7 +104,7 @@ class ProgramController extends Controller {
 		if(Input::hasFile('small_pic')) {
 			$extension=Input::file('small_pic')->getClientOriginalExtension();
 		}
-		$edit->add('small_pic',sprintf('列表專用圖(%sx%s)',env('IMAGE_SMALL_WIDTH'),env('IMAGE_SMALL_HEIGHT')),'image')->rule('required')->rule('mimes:jpeg,jpg,png,gif')->preview(round(env('IMAGE_SMALL_WIDTH')/2),round(env('IMAGE_SMALL_HEIGHT')/2))->resize(env('IMAGE_SMALL_WIDTH'),env('IMAGE_SMALL_HEIGHT'))->move('images/program/small/',$filename.'.'.$extension);
+		$edit->add('small_pic',sprintf('列表專用圖(%sx%s)',env('IMAGE_SMALL_WIDTH'),env('IMAGE_SMALL_HEIGHT')),'image')->rule('required')->rule('mimes:jpeg,jpg,png,gif')->preview(round(env('IMAGE_SMALL_WIDTH')/2),round(env('IMAGE_SMALL_HEIGHT')/2))->resize(env('IMAGE_SMALL_WIDTH'),env('IMAGE_SMALL_HEIGHT'))->move('newbepotv/program/small/',$filename.'.'.$extension);
 		$edit->add('summary','簡介','textarea')->rule('required');
 		$edit->add('p_link','指定連結','text');
 		$edit->add('embed','Embed','textarea');

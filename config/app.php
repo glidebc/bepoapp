@@ -169,6 +169,7 @@ return [
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         App\Providers\ResponseProvider::class,
+        Spatie\LinkChecker\LinkCheckerServiceProvider::class,
     ],
 
     /*

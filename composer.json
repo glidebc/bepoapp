@@ -19,7 +19,9 @@
         "predis/predis": "^1.1",
         "jenssegers/mongodb": "^3.1",
         "maatwebsite/excel": "^2.1",
-        "webpatser/laravel-uuid": "2.*"
+        "webpatser/laravel-uuid": "2.*",
+        "spatie/laravel-link-checker": "^1.0",
+        "thunderer/shortcode": "^0.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

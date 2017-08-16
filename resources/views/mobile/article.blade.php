@@ -34,7 +34,7 @@ var newTracker = ga.getByName('newTracker');
 </script>
 <!-- GA end -->
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    </head>
+</head>
     <body>
         <div id='wrap'>
 <!-- Bepo_App_ContentTop -->
@@ -76,7 +76,6 @@ var newTracker = ga.getByName('newTracker');
                             }
                             $data=trim($data);
 							
-							
 							//part2
 							$keyword='※延伸閱讀';
                             $arr=explode($keyword,$data,2);
@@ -94,15 +93,21 @@ var newTracker = ga.getByName('newTracker');
                 <br />
                 <br />
             </div>
-<!-- Bepo_App_ContentBottom_RWD -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-3614921727460755"
-     data-ad-slot="6353897822"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>        
-            </div>
+		<!-- Bepo_App_ContentBottom_RWD -->
+		<ins class="adsbygoogle"
+			 style="display:block"
+			 data-ad-client="ca-pub-3614921727460755"
+			 data-ad-slot="6353897822"
+			 data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>        
+		<script>
+		$('img,a').on('click',function(event){
+			event.stopPropagation();
+			return false;
+		});
+		</script>
+		</div>
     </body>
 </html>

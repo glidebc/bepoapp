@@ -11,8 +11,10 @@ class ComposerStaticInit7b49cef583e52076ab5346238ad0a8bf
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '14812156da62770d06ccc3ede5af6de1' => __DIR__ . '/..' . '/zofe/burp/src/helpers.php',
@@ -46,6 +48,8 @@ class ComposerStaticInit7b49cef583e52076ab5346238ad0a8bf
         'T' => 
         array (
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
+            'Thunder\\Shortcode\\Tests\\' => 24,
+            'Thunder\\Shortcode\\' => 18,
         ),
         'S' => 
         array (
@@ -68,6 +72,8 @@ class ComposerStaticInit7b49cef583e52076ab5346238ad0a8bf
             'Symfony\\Component\\Console\\' => 26,
             'SuperClosure\\' => 13,
             'Spatie\\Tail\\' => 12,
+            'Spatie\\LinkChecker\\' => 19,
+            'Spatie\\Crawler\\' => 15,
             'Scrutinizer\\Ocular\\' => 19,
         ),
         'P' => 
@@ -95,6 +101,8 @@ class ComposerStaticInit7b49cef583e52076ab5346238ad0a8bf
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
         ),
         'F' => 
         array (
@@ -176,6 +184,14 @@ class ComposerStaticInit7b49cef583e52076ab5346238ad0a8bf
         array (
             0 => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src',
         ),
+        'Thunder\\Shortcode\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/thunderer/shortcode/tests',
+        ),
+        'Thunder\\Shortcode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/thunderer/shortcode/src',
+        ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-util',
@@ -252,6 +268,14 @@ class ComposerStaticInit7b49cef583e52076ab5346238ad0a8bf
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-tail/src',
         ),
+        'Spatie\\LinkChecker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-link-checker/src',
+        ),
+        'Spatie\\Crawler\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/crawler/src',
+        ),
         'Scrutinizer\\Ocular\\' => 
         array (
             0 => __DIR__ . '/..' . '/scrutinizer/ocular/src/Scrutinizer/Ocular',
@@ -299,6 +323,14 @@ class ComposerStaticInit7b49cef583e52076ab5346238ad0a8bf
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'Faker\\' => 
         array (

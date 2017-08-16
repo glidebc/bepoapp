@@ -33,7 +33,7 @@ class ProgramCalendarController extends Controller {
 	function __construct() {
 		$this->path=request()->segment(1);
 		$pairs=explode('_',$this->path);
-		$channelId=$pairs[2];
+		$channelId=count($pairs)>2?$pairs[2]:'';
 		$timeZone=$channelId=='A1'?'America/Los_Angeles':'';
 		$this->weekOpts=$this->getWeekOpts($timeZone);
 		$this->weekNO=$this->getWeekNO($timeZone);

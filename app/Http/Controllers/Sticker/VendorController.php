@@ -53,25 +53,40 @@ class VendorController extends Controller {
 		$vals=array();
 		foreach($keys as $k) {
 			$score=Redis::zScore($key,$k);
-			$vals[]=[$k,$score];
+			$vals[]=[
+			$k,
+			$score*1];
 		}
-		return array('flds'=>array('id','score'),'vals'=>$vals);
+		return array(
+			'flds'=> array(
+				'id',
+				'score'
+			),
+			'vals'=>$vals
+		);
 	}
 
 	public function anyAdd(Request $request,$id) {
-        return $this->hitTest('sticker.vendor3333',$id,20);
+		return $this->hitTest('sticker.vendor3333',$id,20);
 	}
 
 	public function anyInfo(Request $request) {
-		return Cache::remember('sticker.vendor',1,function() {
-			$coll=VendorModel::join('vendor_item','vendor_id','=','vendor.id')->orderBy('vendor.sort','asc','vendor_item.sort','asc')->select(DB::raw('vendor_item.id as id,vendor.pic as vendor_pic,vendor.url as vendor_url,vendor_item.title as title'))->get();
+		$datalist=Cache::remember('sticker.vendor',1,function() {
+			$coll=VendorModel::join('vendor_item','vendor_id','=','vendor.id')->orderBy('vendor.sort','asc','vendor_item.sort','asc')->select(DB::raw('vendor_item.id as id,vendor.name as vendor_name,vendor_id,vendor.url as vendor_url,vendor.pic as vendor_pic,vendor.url as vendor_url,vendor_item.title as title'))->get();
 			$return=array();
 			foreach($coll as $data) {
-				$data['vendor_pic']=asset('sticker/'.$data['vendor_pic']);
-				$return[]=$data;
+				$return[$data['vendor_id']]['url']=$data['vendor_url'];
+				$return[$data['vendor_id']]['name']=$data['vendor_name'];
+				$return[$data['vendor_id']]['pic']=asset('sticker/'.$data['vendor_pic']);
+				$return[$data['vendor_id']]['entries'][]=array(
+					'id'=>$data['id'],
+					'title'=>$data['title'],
+					'url'=>$data['url']
+				);
 			}
 			return $return;
 		});
+		return view('sticker.index',array('datalist'=>$datalist));
 	}
 
 	public function anyEdit(Request $request) {

@@ -26,8 +26,8 @@ Route::get('/','HomeController@index');
  | kernel and includes session state, CSRF protection, and more.
  |
  */
-//Route::group(array('prefix'=> 'bepoapp'),function() { 
-    Route::get('adshow/{id?}','AdController@show')->where(array('id'=>'[0-9]+'));
+//Route::group(array('prefix'=> 'bepoapp'),function() {
+Route::get('adshow/{id?}','AdController@show')->where(array('id'=>'[0-9]+'));
 //});
 
 Route::group(['middleware'=>[
@@ -94,45 +94,46 @@ Route::group(['middleware'=>[
 	Route::controller('newbepotv_tag','NewBepoTV\TagController');
 	Route::controller('newbepotv_category','NewBepoTV\CategoryController');
 	Route::controller('newbepotv_promote','NewBepoTV\PromoteController');
-	Route::controller('app_setting_1','AppSettingController');
 	//sticker
 	Route::controller('sticker_vendor','Sticker\VendorController');
 	Route::controller('sticker_vendor_item','Sticker\VendorItemController');
+	Route::controller('global_config','ConfigController');
+	Route::controller('bepo_app','BepoAPPController');
 });
 
 //Route::group(array('prefix'=> 'bepoapp'),function() {
-	Route::resource('services/news','BepoAPIController');
-	Route::resource('services/news_test','BepoAPIController@news_test');
+Route::resource('services/news','BepoAPIController');
+Route::resource('services/news_test','BepoAPIController@news_test');
 
-	Route::any('cti/services/program_calendar','CTI\ProgramCalendarController@info');
-	Route::get('services/ad/{id?}','BepoAPIController@ad');
-	Route::get('services/ad_update','BepoAPIController@ad_update');
-	Route::get('services/notification','BepoAPIController@notification');
-	Route::get('services/360','BepoAPIController@channel360');
-	Route::get('services/cti_videos','BepoAPIController@channelCtiVideos');
-	Route::get('services/event','BepoAPIController@channelEvent');
-	Route::get('services/star','BepoAPIController@channelStar');
-	Route::get('services/live','BepoAPIController@channelLive');
-	Route::get('services/24hours','BepoAPIController@channel24hours');
-	Route::get('services/hotest','BepoAPIController@channelHotest');
-	Route::get('services/AppCheckVer','BepoAPIController@AppCheckVer');
-	Route::get('services/embed/{kind}/{limit?}','BepoAPIController@embed');
-	Route::get('search/posts','SearchController@posts');
-	Route::get('search/tags','SearchController@tags');
-	Route::get('services/fcm/update','FCMController@update');
-	Route::get('services/program','CTI\ProgramCalendarController@anyInfo');
-	//bepo embeding
-	Route::get('appdownload','AppDownload@index');
+Route::any('cti/services/program_calendar','CTI\ProgramCalendarController@info');
+Route::get('services/ad/{id?}','BepoAPIController@ad');
+Route::get('services/ad_update','BepoAPIController@ad_update');
+Route::get('services/notification','BepoAPIController@notification');
+Route::get('services/360','BepoAPIController@channel360');
+Route::get('services/cti_videos','BepoAPIController@channelCtiVideos');
+Route::get('services/event','BepoAPIController@channelEvent');
+Route::get('services/star','BepoAPIController@channelStar');
+Route::get('services/live','BepoAPIController@channelLive');
+Route::get('services/24hours','BepoAPIController@channel24hours');
+Route::get('services/hotest','BepoAPIController@channelHotest');
+Route::get('services/AppCheckVer','BepoAPIController@AppCheckVer');
+Route::get('services/embed/{kind}/{limit?}','BepoAPIController@embed');
+Route::get('search/posts','SearchController@posts');
+Route::get('search/tags','SearchController@tags');
+Route::get('services/fcm/update','FCMController@update');
+Route::get('services/program','CTI\ProgramCalendarController@anyInfo');
+//bepo embeding
+Route::get('appdownload','AppDownload@index');
 
-	Route::resource('services/categories','CategoriesResource');
-	Route::resource('services/api','ApiResource');
-	Route::get('articles/{date}/{id}/{slug?}','ArticlesController@show')->where(array(
-		'date'=>'[0-9]+',
-		'id'=>'[0-9]+'
-	));
+Route::resource('services/categories','CategoriesResource');
+Route::resource('services/api','ApiResource');
+Route::get('articles/{date}/{id}/{slug?}','ArticlesController@show')->where(array(
+	'date'=>'[0-9]+',
+	'id'=>'[0-9]+'
+));
 
-	Route::controller('test','TestController');
-	Route::controller('statistic','StatisticController');
+Route::controller('test','TestController');
+Route::controller('statistic','StatisticController');
 //});
 
 Route::group(array('middleware'=>[

@@ -35,7 +35,7 @@ class RolesController extends Controller {
 		$grid -> add('display_name', '顯示名稱', true) -> style('width:16%');
 		$grid -> add('description', '描述', true);
 		$grid -> add('created_at', '建立時間', true) -> style('width:12%');
-		$grid -> edit('roles/edit', '操作', 'show|delete|modify') -> style('width:10%');
+		$grid -> edit('roles/edit', '操作', 'show|modify') -> style('width:10%');
 		$grid -> link('roles/edit', "新增", "TR");
 		$grid -> orderBy('name', 'desc');
 		$grid -> paginate(config('global.rows_of_page'));

@@ -97,7 +97,7 @@ class VideosController extends Controller {
 
 		$grid->add('created_at','建立時間',false)->style('width:10%');
 		$grid->edit($this->path.'/edit','操作','show|delete|modify')->style('width:12%');
-		$grid->orderBy('id','desc');
+		$grid->orderBy('created_at','desc');
 		$grid->link($this->path.'/edit',"新增","TR");
 		$grid->paginate(config('global.rows_of_page'));
 		$grid->build('crud.datagrid');

@@ -4,7 +4,7 @@
 #
 #
 #
-&main(10);
+&main(30);
 
 sub main{
 	my $idle=shift||30;

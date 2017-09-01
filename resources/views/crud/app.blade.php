@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
     <title>{{config('global.site_name')}}-{{$site_title}}</title>
+    <link rel="shortcut icon" href="favicon.png" />
     @include('layouts.partials.styles')
     @show
     @include('layouts.partials.scripts')

@@ -41,7 +41,7 @@ class ProgramCalendarController extends Controller {
 
 	public function anyAdd(Request $request) {
 		$pairs=explode('_',$request->segment(1));
-		$channelId=$pairs[2];
+		$channelId=@$pairs[2];
 		$timeOpts=array(''=>'選擇時間');
 		for($i=0;$i<=(24*60);$i+=15) {
 			$t=substr('0'.floor($i/60),-2).':'.substr('0'.$i%60,-2);
@@ -114,7 +114,7 @@ class ProgramCalendarController extends Controller {
 
 	public function anyCopy(Request $request) {
 		$pairs=explode('_',$request->segment(1));
-		$channelId=$pairs[2];
+		$channelId=@$pairs[2];
 		$form=DataForm::source(new CalendarCopy());
 		$form->submit('複製');
 		$form->link($this->path,"回列表","TR")->back();
@@ -144,7 +144,7 @@ class ProgramCalendarController extends Controller {
 		}
 		else {
 			$pairs=explode('_',$request->segment(1));
-			$channelId=$pairs[2];
+			$channelId=@$pairs[2];
 		}
 		$model=ProgramCalendar::join('cti_program','program_id','=','cti_program.id')->where('cti_program_calendar.channel_id','=',$channelId)->selectRaw('cti_program_calendar.*,cti_program.color,cti_program.name,cti_program.url,cti_program.level');
 		$start=$request->has('start')?$request->input('start'):date('Y-m-d');

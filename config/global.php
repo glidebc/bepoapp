@@ -22,7 +22,7 @@
       '' => 'N/A',
       0 => 'TAMEDIA',
       1 => 'INNITY',
-      2 => 'INIII',
+      2 => 'TENMAX',
     ),
   ),
   'logtypes' => 

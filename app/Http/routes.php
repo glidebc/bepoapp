@@ -99,6 +99,7 @@ Route::group(['middleware'=>[
 	Route::controller('sticker_vendor_item','Sticker\VendorItemController');
 	Route::controller('global_config','ConfigController');
 	Route::controller('bepo_app','BepoAPPController');
+	Route::controller('checker','CheckerController');
 });
 
 //Route::group(array('prefix'=> 'bepoapp'),function() {

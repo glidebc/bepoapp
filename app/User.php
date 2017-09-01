@@ -43,9 +43,16 @@ class User extends Authenticatable {
 	//public function setPasswordAttribute($value) {
 	//	$this->attributes['password']=bcrypt($value);
 	//}
-
 	function scopeProgs() {
-		return $this->join('role_user','users.id','=','role_user.user_id')->join('role_prog','role_user.role_id','=','role_prog.role_id')->join('progs','role_prog.prog_id','=','progs.id')->join('menus','menus.id','=','progs.menu_id')->where('progs.enabled','=','1')->orderBy('menus.priority','asc')->orderBy('progs.priority','asc')->select(DB::raw('progs.name as name,progs.path as path,menus.id as menuid,menus.title as menutitle'));
+		return $this->join('role_user','users.id','=','role_user.user_id')
+		  ->join('role_prog','role_user.role_id','=','role_prog.role_id')
+		  ->join('progs','role_prog.prog_id','=','progs.id')
+		  ->join('menus','menus.id','=','progs.menu_id')
+		  ->where('progs.enabled','=','1')
+		  ->orderBy('menus.priority','asc')
+		  ->orderBy('progs.priority','asc')
+          ->orderBy('progs.id','asc')
+		  ->select(DB::raw('progs.name as name,progs.path as path,menus.id as menuid,menus.title as menutitle'));
 	}
 
 	public function getRoleAttribute($value) {

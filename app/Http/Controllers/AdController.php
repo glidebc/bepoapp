@@ -128,6 +128,9 @@ class AdController extends Controller {
 				case '3':
 					$from='gotvapp';
 					break;
+				case '4':
+					$from='demoweb';
+					break;
 			}
 			$href=url('adshow/'.$row['id']);
 			$href.='?from='.$from;

@@ -7,7 +7,7 @@
     </h1>
   -->
    <ol class="breadcrumb" style="float:none;position:static;">
-	        <li><a href="/home"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+	        <li><a href="/home"><i class="fa fa-dashboard"></i>主控台</a></li>
 	        @inject('prog','App\Progs')
 	        <?php
 	        	$proginfo=$prog->join('menus','progs.menu_id','=','menus.id')->where('path','=',Request::segment(1))->first();

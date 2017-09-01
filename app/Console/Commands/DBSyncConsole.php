@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use DB;
 use Carbon\Carbon;
 use Storage;
-use App\Shopping_Posts;
+use App\shopping_Posts;
 use App\Model\Posts;
 use App\Model\Categories;
 use App\Model\Post_Category;
@@ -31,7 +31,7 @@ class DBSyncConsole extends Command {
     }
 
     public function getAuthor($author_id) {
-        $author=DB::connection('platform')->select('select display_name from platform.shopping_users where ID=?',array($author_id));
+        $author=DB::connection('platform')->select('select display_name from newbepo.bepo_users where ID=?',array($author_id));
         if(count($author)) {
             return $author[0]->display_name;
         } else {
@@ -40,9 +40,9 @@ class DBSyncConsole extends Command {
     }
 
     public function getSourceCates() {
-        $categories=DB::connection('platform')->select('select shopping_term_taxonomy.taxonomy,shopping_terms.name,shopping_terms.term_id from platform.shopping_term_taxonomy inner join platform.shopping_terms
-            on platform.shopping_term_taxonomy.term_id=platform.shopping_terms.term_id
-            order by platform.shopping_terms.term_id desc ');
+        $categories=DB::connection('platform')->select('select bepo_term_taxonomy.taxonomy,bepo_terms.name,bepo_terms.term_id from newbepo.bepo_term_taxonomy inner join newbepo.bepo_terms
+            on newbepo.bepo_term_taxonomy.term_id=newbepo.bepo_terms.term_id
+            order by newbepo.bepo_terms.term_id desc ');
         $dict=array();
         $idx=1;
         foreach($categories as $c) {
@@ -69,7 +69,7 @@ class DBSyncConsole extends Command {
     public $cates=array();
     public function getCates($id) {
         $ids=array();
-        $sql='select * from shopping_term_relationships where object_id=?';
+        $sql='select * from bepo_term_relationships where object_id=?';
         foreach(DB::connection('platform')->select($sql,array($id)) as $d) {
             if(array_key_exists($d->term_taxonomy_id,$this->cates)) {
                 $ids[]=$d->term_taxonomy_id;
@@ -145,7 +145,7 @@ class DBSyncConsole extends Command {
     }
 
     public function getSourceIds() {
-        return Shopping_Posts::where('post_status','=','publish')->where('post_type','=','post')->orderBy('ID','asc')->pluck('ID')->toArray();
+        return shopping_Posts::where('post_status','=','publish')->where('post_type','=','post')->orderBy('ID','asc')->pluck('ID')->toArray();
     }
 
     public function getTargetList() {
@@ -158,7 +158,7 @@ class DBSyncConsole extends Command {
 
     public function getSourceList() {
         $list=array();
-        foreach(Shopping_Posts::where ( 'post_status','=','publish')
+        foreach(shopping_Posts::where ( 'post_status','=','publish')
         -> where ( 'post_type' ,'=', 'post')
         -> orderBy('ID','asc')
         -> get() as $d) {
@@ -273,12 +273,12 @@ class DBSyncConsole extends Command {
     public $imageCache=array();
 
     public function getImage($post_id) {
-        $sql="select * from shopping_postmeta where post_id=? and meta_key='_thumbnail_id'";
+        $sql="select * from bepo_postmeta where post_id=? and meta_key='_thumbnail_id'";
         $meta_list=DB::connection('platform')->select($sql,array($post_id));
         if(count($meta_list) > 0) {
             $data=$meta_list[0];
             $post_id=$data->meta_value;
-            $sql="select * from shopping_postmeta where post_id=? and meta_key='_wp_attached_file'";
+            $sql="select * from bepo_postmeta where post_id=? and meta_key='_wp_attached_file'";
             $meta_list=DB::connection('platform')->select($sql,array($post_id));
             if(count($meta_list) > 0) {
                 $data=$meta_list[0];
@@ -289,7 +289,7 @@ class DBSyncConsole extends Command {
     }
 
     public function getPost($id) {
-        $posts=DB::connection('platform')->select('select * from shopping_posts where ID=? limit 1',array($id));
+        $posts=DB::connection('platform')->select('select * from bepo_posts where ID=? limit 1',array($id));
         return count($posts) > 0 ? $posts[0] : false;
     }
 

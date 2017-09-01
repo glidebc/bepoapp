@@ -14,6 +14,6 @@ use Carbon\Carbon;
 class Shopping_Posts extends Model {
 	protected $primaryKey = 'ID';
 	protected $connection = 'platform';
-	protected $table='shopping_posts';
+	protected $table='bepo_posts';
 	public $timestamps=false;
 }

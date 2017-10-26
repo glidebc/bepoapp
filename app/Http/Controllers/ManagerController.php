@@ -44,9 +44,15 @@ class ManagerController extends Controller {
 		$grid->attributes(array("class"=>"table table-striped"));
 		$grid->add('name','名稱',true)->style('width:20%');
 		$grid->add('email','電子信箱',true);
+		$grid->add('status','狀態',true)->cell(function($value,$row) {
+			$ret=array_get(config('global.post_status'),$value);
+			$color=$value=='1'?'#00ff00':'#ff0000';
+			return "<span style='color:$color'>$ret</span>";
+		});
+
 		$grid->add('role_display_name','角色',true);
 		$grid->add('created_at','建立時間',true)->style('width:12%');
-		$grid->edit('manager/edit','操作','show|delete|modify')->style('width:10%');
+		$grid->edit('manager/edit','操作','show|modify')->style('width:10%');
 		$grid->link('manager/edit',"新增","TR");
 		$grid->orderBy('name','desc');
 		$grid->paginate(config('global.rows_of_page'));
@@ -67,6 +73,7 @@ class ManagerController extends Controller {
 		}
 		$edit->add('name','名稱','text')->rule('required|unique:users,name,'.$edit->model->id);
 		$edit->add('roles.id','角色','select')->options($this->roles)->rule('required');
+		$edit->add('status', '狀態', 'select') -> options(config('global.post_status'));
 		$edit->add('created_at','建立時間','text')->mode('readonly');
 		$edit->add('updated_at','更新時間','text')->mode('readonly');
 		$edit->build('crud.dataform');

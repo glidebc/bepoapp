@@ -7,6 +7,10 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use Hash;
+use Auth;
+
 
 class AuthController extends Controller
 {
@@ -39,6 +43,20 @@ class AuthController extends Controller
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
+    public function login(Request $request) {
+        $model=\App\User::where('email','=',$request->input('email'))->where('status','=','1')->first();
+	$check=false;
+	if($model&&$request->has('password')){
+		$check=Hash::check($request->input('password'),$model->password);
+	}
+        if($check){
+            Auth::logout();
+            Auth::loginUsingId($model->id);
+            return redirect($this->redirectTo);
+        }
+        return redirect()->back()->withErrors(array('使用者名稱或密碼錯誤'));
+    }
+
 
     /**
      * Get a validator for an incoming registration request.

@@ -102,7 +102,7 @@ var newTracker = ga.getByName('newTracker');
 		(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>        
 		<script>
-		$('img,a').on('click',function(event){
+		$('#container img,a').on('click',function(event){
 			event.stopPropagation();
 			return false;
 		});

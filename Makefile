@@ -50,6 +50,7 @@ super_status:
 
 
 clean:
+	-$(COMPOSER) dump-autoload
 	php artisan clear-compiled
 	#php artisan config:cache
 	php artisan cache:clear
@@ -58,7 +59,6 @@ clean:
 	php artisan route:clear
 	php artisan view:clear
 	#php artisan route:cache
-	-$(COMPOSER) dump-autoload
 	rm -rf storage/logs/*.log
 	chown -R nginx .
 

@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use DB;
 use Carbon\Carbon;
 use Storage;
-use App\shopping_Posts;
+use App\Shopping_Posts;
 use App\Model\Posts;
 use App\Model\Categories;
 use App\Model\Post_Category;
@@ -145,7 +145,7 @@ class DBSyncConsole extends Command {
     }
 
     public function getSourceIds() {
-        return shopping_Posts::where('post_status','=','publish')->where('post_type','=','post')->orderBy('ID','asc')->pluck('ID')->toArray();
+        return Shopping_Posts::where('post_status','=','publish')->where('post_type','=','post')->orderBy('ID','asc')->pluck('ID')->toArray();
     }
 
     public function getTargetList() {
@@ -158,7 +158,7 @@ class DBSyncConsole extends Command {
 
     public function getSourceList() {
         $list=array();
-        foreach(shopping_Posts::where ( 'post_status','=','publish')
+        foreach(Shopping_Posts::where ( 'post_status','=','publish')
         -> where ( 'post_type' ,'=', 'post')
         -> orderBy('ID','asc')
         -> get() as $d) {
@@ -271,8 +271,18 @@ class DBSyncConsole extends Command {
     }
 
     public $imageCache=array();
+    public function getImage1($post_id) {
+        $sql="select * from bepo_postmeta where post_id=? and meta_key='fifu_image_url'";
+        $meta_list=DB::connection('platform')->select($sql,array($post_id));
+        if(count($meta_list) > 0) {
+            $data=$meta_list[0];
+            return $data->meta_value;
+        }
+        return '';
+    }
 
     public function getImage($post_id) {
+		$ID=$post_id;
         $sql="select * from bepo_postmeta where post_id=? and meta_key='_thumbnail_id'";
         $meta_list=DB::connection('platform')->select($sql,array($post_id));
         if(count($meta_list) > 0) {
@@ -283,9 +293,9 @@ class DBSyncConsole extends Command {
             if(count($meta_list) > 0) {
                 $data=$meta_list[0];
                 return $data->meta_value;
-            };
+            }
         }
-        return '';
+		return $this->getImage1($ID);
     }
 
     public function getPost($id) {
@@ -319,6 +329,7 @@ class DBSyncConsole extends Command {
         $oid=$post->post_parent;
 
         $image='';
+
         if(array_key_exists($post->ID,$this->imageCache)) {
             $image=$this->imageCache[$post->ID];
         } else {

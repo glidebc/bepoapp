@@ -45,12 +45,14 @@ class Posts extends Model {
 
 	public function getImageAttribute() {
 		$image = $this -> attributes['image'];
+		if(substr($image,0,4)=='http'){return $image;}
 		if ($image)
 			return 'http://pics.ctitv.com/wpimg/' . $image;
 	}
 
 	public function getImageThumAttribute() {
 		$image = $this -> attributes['image'];
+		if(substr($image,0,4)=='http'){return $image;}
 		if ($image) {
 			$buff = explode('.', $image);
 			$url = $buff[0] . '-300x160.' . $buff[1];

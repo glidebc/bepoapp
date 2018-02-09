@@ -29,6 +29,8 @@ use Cache;
 
 class VideosController extends Controller {
 	public function getIndex(Request $request) {
+		#$vs=VideoModel::where('created_at','=','')->take(1)->get();
+		#dd($vs);
 		$m=new VideoModel();
 		$filter=DataFilter::source($m);
 		$filter->add('title','標題','text');

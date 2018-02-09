@@ -1,5 +1,34 @@
-// var mFrom = 'gotvweb';
+// var LoaderAd2 = function() {}
+// LoaderAd2.prototype = {
+//     require: function(scripts, callback) {
+//         this.loadCount = 0;
+//         this.totalRequired = scripts.length;
+//         this.callback = callback;
 
+//         for (var i = 0; i < scripts.length; i++) {
+//             this.writeScript(scripts[i]);
+//         }
+//     },
+//     loaded: function(evt) {
+//         this.loadCount++;
+
+//         if (this.loadCount == this.totalRequired && typeof this.callback == 'function') this.callback.call();
+//     },
+//     writeScript: function(src) {
+//         var self = this;
+//         var s = document.createElement('script');
+//         s.id = "MediaScroll-AD2";
+//         s.key = "1c583b65-56f8-11e7-91c1-f23c9173ed43";
+//         s.type = "text/javascript";
+//         s.show = "now";
+//         s.close = "";
+//         s.async = true;
+//         s.src = src;
+//         s.addEventListener('load', function(e) { self.loaded(e); }, false);
+//         var head = document.getElementsByTagName('head')[0];
+//         head.appendChild(s);
+//     }
+// }
 var Loader = function() {}
 Loader.prototype = {
     require: function(scripts, callback) {
@@ -28,62 +57,18 @@ Loader.prototype = {
     }
 }
 
-var l = new Loader();
-l.require([
-        'https://adc.tamedia.com.tw/rmadp/static/js/mraid.js',
-        'https://adc.tamedia.com.tw/rmadp/static/js/messenger.js',
-        'https://adc.tamedia.com.tw/rmadp/static/js/gm-sdk3-mobile.js'
-    ],
-    function() {
-        console.log('ta media js loaded');
-        taMediaAdLoad();
-    });
+// var loaderAd2 = new LoaderAd2();
+// loaderAd2.require([
+//         'https://content.ad2iction.com/mediascroll/ad2-scroll.js'
+//     ],
+//     function() {
+//         console.log('AD2 loaded');
+//     });
 
-function taMediaAdLoad() {
-    //body 加入 div#MADdpzone
-    jQuery('body').prepend('<div id="MADdpzone"></div>');
-    //從網址取得廣告版位ID
-    console.log('hostname : ' + location.hostname);
-    var adPID = 'FMw1493876902208vik'; //bepo廣告版位ID
-    var hostChar1 = location.hostname.split('.')[0]; //網址的第一個單字(gotv.ctitv.com.tw就取得gotv)
-    if (hostChar1 == 'gotv') { //網址第一個字是gotv
-        adPID = 'k36149387727277315g'; //gotv廣告版位ID
-    } else {
-        hostChar1 = "bepo";
-    }
-    console.log(hostChar1 + ' 廣告版位ID = ' + adPID);
-    
-    //TAMedia ad load
-    adLoad2(adPID, '198', 'MADdpzone', true, 0, adLoad_callback); //
-
-    /*
-    adLoad2()
-    參數定義:
-    第一個,廣告版位ID 
-    第二個,廠商ID (198)
-    第三個,自定義的網頁元素id (MADdpzone)
-    第四個,openNewWindow,布林值(true|false)
-    第五個,testFlag, 數值(0|1), 0表示為正式模式, 1表示為測試模式
-    第六個,callbackFunction,為callback介面, 必須為function type, 有廣告回傳:"00", 無廣告回傳:"20"
-    第七個,floatPosition, 數值(1|2), 為懸浮廣告使用, 若為1表示廣告位置在左邊, 若為2表示廣告位置在右邊
- 
-    參數說明:
-    前兩個參數不需變動(於後台廣告版位列表的下載嵌入程式碼自動取得),
-    第三個參數自行定義,以不重複為原則,並和廣告位置<div>的id相同
-    第四個參數自行設定,設為true表示點擊廣告後另開新分頁，設為false表示點擊廣告後不另開新分頁
-    */
-}
-
-//adLoad2() callback
-function adLoad_callback(status) {
-
-    if (status == '00') {
-        console.log("ta media AD");
-    } else {
-        console.log("ta media 無廣告");
-        console.log("Passback 準備中");
-        passbackAdLoad();
-    }
+function callbackAD2() {
+    console.log("AD2 無廣告");
+    console.log("Passback 準備中");
+    passbackAdLoad();
 }
 
 function passbackAdLoad() {

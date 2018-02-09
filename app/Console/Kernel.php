@@ -22,6 +22,6 @@ class Kernel extends ConsoleKernel
     {
     $schedule->command('bepo:fcmnotify')->everyMinute()->withoutOverlapping();
         $schedule->command('cchanel')->everyMinute()->withoutOverlapping();
-        $schedule->command('link-checker:run')->everyMinute()->withoutOverlapping();
+#        $schedule->command('link-checker:run')->everyMinute()->withoutOverlapping();
     }
 }

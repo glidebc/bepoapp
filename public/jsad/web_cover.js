@@ -1,22 +1,22 @@
-var mFrom='bepoweb';
+var mFrom;
 
 jQuery(function() {
-    // var hostnameArray = location.hostname.split('.');
-    // var fName = hostnameArray[0];
-    // console.log('host name = ' + fName);
+    var hostnameArray = location.hostname.split('.');
+    var fName = hostnameArray[0];
+    console.log('host name = ' + fName);
 
-    // mFrom = fName + 'web';
-    // // if( document.cookie.indexOf(mFrom) < 0 ) {
-    // //set cookie
-    // var d = new Date();
-    // // d.setTime(d.getTime() + (60 * 60 * 1000));// 一小時後過期
-    // d.setTime(d.getTime() + (1 * 60 * 1000)); // 1分鐘後過期
-    // var expires = "expires=" + d.toGMTString();
-    // document.cookie = "name=" + mFrom + "; " + expires + '; path=/';
+    mFrom = fName + 'web';
+    // if( document.cookie.indexOf(mFrom) < 0 ) {
+    //set cookie
+    var d = new Date();
+    // d.setTime(d.getTime() + (60 * 60 * 1000));// 一小時後過期
+    d.setTime(d.getTime() + (1 * 60 * 1000)); // 1分鐘後過期
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = "name=" + mFrom + "; " + expires + '; path=/';
 
     jQuery.ajax({
         type: "GET",
-        url: "http://10.110.150.252:7003/services/ad?from=" + mFrom + "&callback=?", //使用JSONP務必在結尾使用 GET 的 callback=?
+        url: "http://bepo.ctitv.com.tw/bepoapp/services/ad?from=" + mFrom + "&callback=?", //使用JSONP務必在結尾使用 GET 的 callback=?
         dataType: "jsonp",
         success: function(res) {
             if (res.result) {
@@ -68,14 +68,14 @@ function showCoverAd(obj) {
     eAdoverInner.appendChild(eAdWord);
     var eAdCloseBtn = document.createElement('div');
     eAdCloseBtn.id = 'ad-close-btn';
-    eAdCloseBtn.innerHTML = 'X';
+    eAdCloseBtn.innerHTML = '×';
     eAdoverInner.appendChild(eAdCloseBtn);
 
-    // if (navigator.userAgent.match(/Android|HTC|iPhone|iPad/i)) {
+    if (navigator.userAgent.match(/Android|HTC|iPhone|iPad/i)) {
         eAdover.style.display = 'block';
         //document.body.style.position='fixed';
         // document.body.style.overflow='hidden';
-    // }
+    }
     (function adOver() {
         jQuery(eAdCloseBtn).click(function() {
             eAdover.style.display = 'none';

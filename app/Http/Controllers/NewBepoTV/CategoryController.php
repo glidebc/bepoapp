@@ -13,8 +13,13 @@ use DB;
 
 class CategoryController extends Controller {
 	public function getIndex() {
+		$hl=[
+			1=>'啟用',
+			0=>'關閉'];
 		$filter=DataFilter::source(new CategoryModel());
 		$filter->add('name','名稱','text');
+		//$filter->add('status','狀態','select')->options( array(''=>'狀態')+$hl);
+		//$filter->add('status','狀態','select')->options([''=>'狀態']+$hl);
 		$filter->submit('搜尋');
 		$filter->reset('重置');
 		$grid=DataGrid::source($filter);
@@ -30,24 +35,25 @@ class CategoryController extends Controller {
 		// &nbsp;
 		// </div>";
 		// })->style('width:10%');
-		$grid->add('status','狀態',true)->cell(function($value,$row) {
-			$hl=[
-			1=>'是',
-			0=>'否'];
+		$grid->add('status','狀態',true)->cell(function($value,$row)  {
+		$hl=[
+			1=>'啟用',
+			0=>'關閉'];
 			return array_get($hl,$value);
 		})->style('width:10%');
 		//$grid->add('article_total','文章數',false)->style('width:15%');
 		$grid->edit($this->path.'/edit','操作','show|modify')->style('width:12%');
 		$grid->link($this->path.'/edit',"新增","TR");
 		$grid->orderBy('sort','asc','created_at','desc');
+#		$grid->orderBy('_id','asc');
 		$grid->paginate(config('global.rows_of_page'));
 		return view('crud.grid',compact('filter','grid'));
 	}
 
 	public function anyEdit() {
-		$options=[
-		1=>'是',
-		0=>'否'];
+		$hl=[
+		1=>'啟用',
+		0=>'關閉'];
 		;
 		$edit=DataEdit::source(new CategoryModel());
 		$edit->link($this->path,"回列表","TR")->back();
@@ -56,7 +62,7 @@ class CategoryController extends Controller {
 		$edit->add('sort','順序','number')->rule('required')->insertValue(100);
 		//$edit->add('color','代表色','colorpicker')->rule('required');
 		//$edit->add('bgcolor','代表色','colorpicker')->rule('required');
-		$edit->add('status','狀態','select')->options($options)->rule('required');
+		$edit->add('status','狀態','select')->options($hl)->rule('required');
         $edit->add('link','指定連結','text');
 		return $edit->view('crud.edit',compact('edit'));
 	}

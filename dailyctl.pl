@@ -10,7 +10,7 @@ sub main{
 	my $idle=shift||30;
 	&logx('idle='.$idle);
 	for(;;){
-		my $synccmd='cd /home/bepoapp;php artisan bepo:dbsync';
+		my $synccmd='cd /home/web/admin;php artisan bepo:dbsync';
 		my $cmd="ps aux | grep  'bepo:dbsync' | grep -v 'grep' | awk -e '{print \$2}'";
 		my $pid=`$cmd`;
 		chomp $pid;

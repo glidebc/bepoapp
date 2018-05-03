@@ -24,7 +24,8 @@ use App\Jobs\Notify;
 
 class FCMBase {
 	protected $ch=null;
-	protected $appId='AIzaSyBEIcc30xnyzKlqB8oMAlzbxGn540MUjMw';
+#	protected $appId='AIzaSyBEIcc30xnyzKlqB8oMAlzbxGn540MUjMw';
+	protected $appId='AAAA9jB65ug:APA91bGHOoWP6NSEpiBmzR5kdicBaxA8DE30K17OmN9PhPeBqP5nQiAXsfZktH2kHkE6b4X7O4RLhhN8cV0obE1--ubBtlKlaFlk7n68W1RulBkodOj3Jzn53I3zjG5h_LoGYBUB0q68';
 	protected $url=null;
 	protected $error=null;
 	protected $baseurl='https://fcm.googleapis.com/fcm/send';
@@ -221,7 +222,7 @@ class FCMHelper extends FCMBase {
 		$end=time();
 		$return['ios']['total']=$return['ios']['success']+$return['ios']['error'];
 		$return['android']['total']=$return['android']['success']+$return['android']['error'];
-		$return['messageId']=date('YmdHis',$start).'-'.$return['ios']['total']+$return['android']['total'];
+		$return['messageId']=date('YmdHis',$start).'-'.$return['ios']['total'].'-'.$return['android']['total'];
 		$return['elapsed_time']=$end-$start;
 		return $return;
 	}

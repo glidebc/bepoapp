@@ -207,7 +207,18 @@ class DBSyncConsole extends Command {
         }
 
     }
-
+    public function updatePostsImage(){
+        $tids=$this->getTargetIds();
+	rsort($tids);
+#	$tids=array(376308);
+#$tids=array(384170);
+        foreach($tids as $id) {
+            $target=Posts::where('origin_id','=',$id)->first();
+echo             $target->image=$this->getImage($id);
+echo "\n";
+	    $target->save();
+        }
+    }
     public function updatePost($post) {
         $image='';
         if(array_key_exists($post->ID,$this->imageCache)) {
@@ -244,6 +255,8 @@ class DBSyncConsole extends Command {
     }
 
     public function handle() {
+	#$this->updatePostsImage();
+	#return;
         $this->setOpts();
         $this->cates=$this->getSourceCates();
         if($this->info) {
@@ -282,18 +295,48 @@ class DBSyncConsole extends Command {
     }
 
     public function getImage($post_id) {
-		$ID=$post_id;
+	$ID=$post_id;
         $sql="select * from bepo_postmeta where post_id=? and meta_key='_thumbnail_id'";
+        #$sql="select * from bepo_postmeta where post_id=? ";
         $meta_list=DB::connection('platform')->select($sql,array($post_id));
+
         if(count($meta_list) > 0) {
             $data=$meta_list[0];
             $post_id=$data->meta_value;
-            $sql="select * from bepo_postmeta where post_id=? and meta_key='_wp_attached_file'";
+            #$sql="select * from bepo_postmeta where post_id=? and meta_key='_wp_attached_file'";
+            $sql="select * from bepo_postmeta where post_id=? and meta_key='amazonS3_info'";
+            $sql="select * from bepo_postmeta where post_id=? ";
             $meta_list=DB::connection('platform')->select($sql,array($post_id));
-            if(count($meta_list) > 0) {
-                $data=$meta_list[0];
-                return $data->meta_value;
-            }
+
+foreach($meta_list as $meta){
+	if($meta->meta_key=='amazonS3_info'){
+		
+                $value=$meta->meta_value;
+                $desc=unserialize($value);
+                return 'http://s3-ap-northeast-1.amazonaws.com/pics.ctitv.com/'.$desc['key'];
+	}
+}
+
+foreach($meta_list as $meta){
+	if($meta->meta_key=='amazonS3_cache'){
+		$value=$meta->meta_value;
+                $desc=unserialize($value);
+                $keys=array_keys($desc);
+                return 'https://s3-ap-northeast-1.amazonaws.com/'.substr($keys[0],2);
+	}
+}
+
+foreach($meta_list as $meta){
+	if($meta->meta_key=='_wp_attached_file'){
+		//https://s3-ap-northeast-1.amazonaws.com/pics.ctitv.com/wpimg/2018/01/e96605.jpg
+		return 'https://s3-ap-northeast-1.amazonaws.com/pics.ctitv.com/wpimg/'.$meta->meta_value;
+
+	}
+}
+
+
+
+
         }
 		return $this->getImage1($ID);
     }
